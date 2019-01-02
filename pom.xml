@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<artifactId>xtool-zipkin-server</artifactId>
+	<version>${project.release.version}</version>
+	<packaging>jar</packaging>
+	<name>xtool-zipkin-server</name>
+	<description>ZipKin Server</description>
+
+	<parent>
+		<groupId>com.xtool</groupId>
+		<artifactId>iot-solution-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	
+	<properties>
+		<project.release.version>0.0.1-SNAPSHOT</project.release.version>
+	</properties>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profiles.current>dev</profiles.current>
+				<project.release.version>0.0.1-DEV</project.release.version>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<profiles.current>test</profiles.current>
+				<project.release.version>0.0.1-TEST</project.release.version>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<profiles.current>prod</profiles.current>
+				<project.release.version>0.0.1-PROD</project.release.version>
+			</properties>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-consul-discovery</artifactId>
+		</dependency>
+		<dependency>  
+    		<groupId>org.springframework.boot</groupId>  
+    		<artifactId>spring-boot-starter-actuator</artifactId>  
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
+		
+		<dependency>
+		    <groupId>io.zipkin.java</groupId>
+		    <artifactId>zipkin-server</artifactId>
+		    <version>2.9.4</version>
+		    <exclusions> 
+			    <exclusion> 
+			    	<groupId>org.springframework.boot</groupId>
+			    	<artifactId>spring-boot-starter-log4j2</artifactId>
+			    </exclusion> 
+		    </exclusions>
+		</dependency>
+
+		<dependency>
+		    <groupId>io.zipkin.java</groupId>
+		    <artifactId>zipkin-autoconfigure-ui</artifactId>
+		    <version>2.11.0</version>
+		</dependency>
+
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.xtool</groupId>
+	  			<artifactId>xtool-enterprise</artifactId>
+	  			<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+</project>

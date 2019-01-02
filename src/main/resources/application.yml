@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: '@profiles.current@'
+
+#add management.metrics.web.server.auto-time-requests=false
+
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+#  cloudfoundry:
+#    enabled: true
+#  endpoint:
+#    refresh:
+#      enabled: true
+#    restart:
+#      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude:
+        - metrics
+#        - refresh
+#        - restart
+#        - health
+#        - info
+#        - mappings
+#        - env
